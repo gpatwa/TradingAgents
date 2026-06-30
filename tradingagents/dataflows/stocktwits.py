@@ -14,11 +14,9 @@ network call succeeded.
 
 from __future__ import annotations
 
+import http.client
 import json
 import logging
-from datetime import datetime, timezone
-from typing import Optional
-from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 from tradingagents.dataflows.http_utils import verified_ssl_context
@@ -42,7 +40,9 @@ def fetch_stocktwits_messages(ticker: str, limit: int = 30, timeout: float = 10.
     try:
         with urlopen(req, timeout=timeout, context=verified_ssl_context()) as resp:
             data = json.loads(resp.read())
-    except (HTTPError, URLError, json.JSONDecodeError, TimeoutError) as exc:
+    except (OSError, http.client.HTTPException, json.JSONDecodeError) as exc:
+        # OSError covers URLError/TimeoutError/connection resets; HTTPException
+        # covers chunked-transfer errors (IncompleteRead/BadStatusLine, #1024).
         logger.warning("StockTwits fetch failed for %s: %s", ticker, exc)
         return f"<stocktwits unavailable: {type(exc).__name__}>"
 
