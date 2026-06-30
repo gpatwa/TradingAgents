@@ -1,0 +1,46 @@
+[
+  {
+    "input_order": 0,
+    "ticker": "SPY",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "Rate SPY Overweight and add exposure gradually rather than chasing a full-size entry at current stretched levels. Use partial tranches to move toward a modest overweight versus benchmark, with initial sizing below maximum and reserve cash for a pullback toward the 10 EMA/VWMA area around 742-745. Reassess if SPY loses near-term trend support decisively, especially a break below the 50 SMA, or if leadership and breadth deteriorate materially. Time horizon is 3-6 months.",
+    "price_target": "",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/market_outlook_20260601/reports/SPY_2026-05-29.md",
+    "error": ""
+  },
+  {
+    "input_order": 2,
+    "ticker": "IWM",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "Maintain or build an IWM position gradually rather than chase aggressively. Initiate around current levels only in tranches, with preferred adds on pullbacks into the 286\u2013283 support zone; use moderate overweight sizing around 6\u20138% total exposure and pause/add discipline if IWM loses momentum. Risk should be cut back on a break below 279, with a tactical holding horizon of 3\u20136 months while the bullish moving-average structure remains intact.",
+    "price_target": "292.0",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/market_outlook_20260601/reports/IWM_2026-05-29.md",
+    "error": ""
+  },
+  {
+    "input_order": 3,
+    "ticker": "DIA",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "For DIA, maintain core exposure and modestly add rather than chase aggressively. Initiate only a partial tranche at current levels if underweight, then prioritize adds on pullbacks toward 504-499, with a harder reassessment if DIA loses 499 and especially the 50-day trend zone near 485. Keep position sizing above benchmark but below max risk, with a 3-6 month horizon while the uptrend remains intact.",
+    "price_target": "",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/market_outlook_20260601/reports/DIA_2026-05-29.md",
+    "error": ""
+  },
+  {
+    "input_order": 1,
+    "ticker": "QQQ",
+    "rating": "Underweight",
+    "score": 2,
+    "executive_summary": "Maintain an Underweight stance on QQQ and trim existing long exposure by roughly 10-20% rather than exit entirely. Avoid initiating or adding near current highs; look to re-enter only on a pullback toward 722-716, with stronger interest near 709 if support holds. Use 709 as the key risk level for further reduction if broken decisively. Time horizon is tactical over the next 1-3 months while the market works off overbought conditions.",
+    "price_target": "",
+    "time_horizon": "1-3 months",
+    "report_path": "reports/market_outlook_20260601/reports/QQQ_2026-05-29.md",
+    "error": ""
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "input_order": 0,
+    "ticker": "RBRK",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "For RBRK, maintain core exposure and build only gradually toward a moderate overweight, using pullbacks, consolidation, or constructive post-earnings confirmation rather than chasing extended strength. Keep sizing disciplined given rich valuation, RSI near 76, and dilution/GAAP loss risks; pause adds if revenue growth slows, free cash flow deteriorates, or guidance weakens over the next 3-6 months.",
+    "price_target": "",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/rbrk_20260601_personal_decision/reports/RBRK_2026-06-01.md",
+    "error": ""
+  }
+]

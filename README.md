@@ -185,6 +185,40 @@ An interface will appear showing results as they load, letting you track the age
   <img src="assets/cli/cli_transaction.png" width="100%" style="display: inline-block; margin: 0 2%;">
 </p>
 
+### Batch Watchlist Analysis
+
+For a daily Yahoo Finance watchlist workflow, use the batch runner to analyze a
+list of tickers and write a ranked summary plus per-ticker reports:
+
+```bash
+python3 scripts/analyze_watchlist.py watchlist.csv --dry-run
+python3 scripts/analyze_watchlist.py watchlist.csv --output-dir reports/today_watchlist
+```
+
+Accepted input formats include a Yahoo-style CSV with a `Symbol` or `Ticker`
+column:
+
+```csv
+Symbol,Name,Last Price,Change
+AAPL,Apple Inc.,190.00,+1.2%
+MSFT,Microsoft Corporation,420.00,-0.4%
+BRK.B,Berkshire Hathaway,410.00,+0.1%
+```
+
+Plain text also works:
+
+```text
+AAPL
+MSFT
+NVDA, TSLA, AMD
+https://finance.yahoo.com/quote/QQQ
+```
+
+The script writes `watchlist_summary.csv`, `watchlist_summary.md`,
+`watchlist_summary.json`, and one Markdown report per ticker. Use
+`--analysts market,news` for a faster first pass, then run the full analyst set
+on the most interesting names.
+
 ## TradingAgents Package
 
 ### Implementation Details

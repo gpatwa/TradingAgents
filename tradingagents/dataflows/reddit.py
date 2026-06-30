@@ -20,6 +20,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from tradingagents.dataflows.http_utils import verified_ssl_context
+
 logger = logging.getLogger(__name__)
 
 _API = "https://www.reddit.com/r/{sub}/search.json?{qs}"
@@ -36,7 +38,7 @@ def _fetch_subreddit(
     sub: str,
     limit: int,
     timeout: float,
-) -> list[dict]:
+) -> list[dict] | None:
     qs = urlencode({
         "q": ticker,
         "restrict_sr": "on",
@@ -47,11 +49,11 @@ def _fetch_subreddit(
     url = _API.format(sub=sub, qs=qs)
     req = Request(url, headers={"User-Agent": _UA, "Accept": "application/json"})
     try:
-        with urlopen(req, timeout=timeout) as resp:
+        with urlopen(req, timeout=timeout, context=verified_ssl_context()) as resp:
             payload = json.loads(resp.read())
     except (HTTPError, URLError, json.JSONDecodeError, TimeoutError) as exc:
         logger.warning("Reddit fetch failed for r/%s · %s: %s", sub, ticker, exc)
-        return []
+        return None
     children = (payload.get("data") or {}).get("children") or []
     return [c.get("data", {}) for c in children if isinstance(c, dict)]
 
@@ -71,10 +73,16 @@ def fetch_reddit_posts(
     """
     blocks = []
     total_posts = 0
+    unavailable_sources = 0
     for i, sub in enumerate(subreddits):
         if i > 0:
             time.sleep(inter_request_delay)
         posts = _fetch_subreddit(ticker, sub, limit_per_sub, timeout)
+        if posts is None:
+            unavailable_sources += 1
+            blocks.append(f"r/{sub}: <reddit unavailable for {ticker.upper()}>")
+            continue
+
         total_posts += len(posts)
         if not posts:
             blocks.append(f"r/{sub}: <no posts found mentioning {ticker.upper()} in the past 7 days>")
@@ -98,7 +106,7 @@ def fetch_reddit_posts(
             )
         blocks.append("\n".join(lines))
 
-    if total_posts == 0:
+    if total_posts == 0 and unavailable_sources == 0:
         return (
             f"<no Reddit posts found mentioning {ticker.upper()} across "
             f"{', '.join(f'r/{s}' for s in subreddits)} in the past 7 days>"

@@ -1,0 +1,24 @@
+[
+  {
+    "input_order": 0,
+    "ticker": "SNOW",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "Overweight SNOW via staged accumulation, not aggressive chasing. Build a moderate overweight in tranches on pullbacks or consolidation near recent post-earnings support and the 50-day moving average area; keep sizing below a full high-conviction maximum given elevated valuation, SBC, and volatility. If SNOW decisively loses intermediate support or follow-through in product revenue growth, free cash flow, or AWS/AI execution fades, pause additions and reassess over a 3-6 month horizon.",
+    "price_target": "",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/snow_orcl_20260528_152748/reports/SNOW_2026-05-28.md",
+    "error": ""
+  },
+  {
+    "input_order": 1,
+    "ticker": "ORCL",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "Increase exposure to ORCL gradually via staged entries, favoring pullbacks into the 186\u2013190 support area rather than chasing strength below major resistance. Size toward a moderate overweight, roughly 5\u20137% of portfolio exposure, with adds only if ORCL stabilizes above support or decisively reclaims 206\u2013207. If ORCL closes below 186 or upcoming results show weak backlog conversion alongside persistently heavy capex and poor cash conversion, pause additions and reassess. Use a 3\u20136 month horizon tied to cloud growth execution, backlog monetization, and improving cash flow visibility.",
+    "price_target": "215.0",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/snow_orcl_20260528_152748/reports/ORCL_2026-05-28.md",
+    "error": ""
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "input_order": 0,
+    "ticker": "LYFT",
+    "rating": "Overweight",
+    "score": 4,
+    "executive_summary": "Rate LYFT Overweight and build exposure in stages rather than chase all at once. Start with a half-size position and add only if LYFT sustains free-cash-flow strength, stable revenue, and improving operating margins while holding the 50-day moving-average/recent-support zone; target a moderate overweight of roughly 1.25x-1.5x normal size over a 3-6 month horizon. If LYFT loses support or the cash-generation thesis weakens after the next earnings report, pause adds and reassess.",
+    "price_target": "16.0",
+    "time_horizon": "3-6 months",
+    "report_path": "reports/lyft_20260529_personal_decision/reports/LYFT_2026-05-29.md",
+    "error": ""
+  }
+]
