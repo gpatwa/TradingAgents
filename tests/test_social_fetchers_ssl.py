@@ -40,7 +40,14 @@ def test_stocktwits_fetch_uses_verified_ssl_context():
 def test_reddit_fetch_uses_verified_ssl_context():
     ssl_context = object()
     response = _FakeResponse(
-        b'{"data": {"children": [{"data": {"title": "SNOW earnings", "score": 3}}]}}'
+        b"""<?xml version="1.0" encoding="UTF-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom">
+          <entry>
+            <title>SNOW earnings</title>
+            <published>2026-07-05T00:00:00Z</published>
+            <content type="html">&lt;!-- SC_OFF --&gt;strong quarter&lt;!-- SC_ON --&gt;</content>
+          </entry>
+        </feed>"""
     )
 
     with (
@@ -49,7 +56,9 @@ def test_reddit_fetch_uses_verified_ssl_context():
     ):
         posts = reddit._fetch_subreddit("SNOW", "stocks", limit=5, timeout=1.0)
 
-    assert posts == [{"title": "SNOW earnings", "score": 3}]
+    assert posts[0]["title"] == "SNOW earnings"
+    assert posts[0]["score"] is None
+    assert posts[0]["source"] == "rss"
     assert urlopen_mock.call_args.kwargs["context"] is ssl_context
 
 

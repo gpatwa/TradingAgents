@@ -32,6 +32,8 @@ from urllib.request import Request, urlopen
 
 from tradingagents.dataflows.http_utils import verified_ssl_context
 
+from .symbol_utils import crypto_base
+
 logger = logging.getLogger(__name__)
 
 _API = "https://www.reddit.com/r/{sub}/search.json?{qs}"
@@ -202,6 +204,9 @@ def fetch_reddit_posts(
     stay under Reddit's public per-IP rate limit; combined with the RSS-first
     path it makes 429s rare even when several analyses run back-to-back.
     """
+    # Crypto reaches us as a Yahoo pair (BTC-USD); search Reddit for the base
+    # ("BTC") so the query actually matches discussion instead of near-nothing.
+    ticker = crypto_base(ticker) or ticker
     blocks = []
     total_posts = 0
     unavailable_sources = 0
