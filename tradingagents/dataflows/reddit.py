@@ -33,7 +33,7 @@ from urllib.request import Request, urlopen
 from tradingagents.dataflows.http_utils import verified_ssl_context
 
 from .date_window import in_window
-from .symbol_utils import crypto_base
+from .symbols import crypto_base
 
 logger = logging.getLogger(__name__)
 
@@ -239,8 +239,12 @@ def fetch_reddit_posts(
     for i, sub in enumerate(subreddits):
         if i > 0:
             time.sleep(inter_request_delay)
-        posts = _within_window(_fetch_subreddit(ticker, sub, limit_per_sub, timeout),
-                               start_date, end_date)
+        fetched = _fetch_subreddit(ticker, sub, limit_per_sub, timeout)
+        if fetched is None:
+            unavailable_sources += 1
+            blocks.append(f"r/{sub}: <reddit unavailable for {ticker.upper()}>")
+            continue
+        posts = _within_window(fetched, start_date, end_date)
         total_posts += len(posts)
         if not posts:
             blocks.append(f"r/{sub}: <no posts found mentioning {ticker.upper()} in the past 7 days>")
